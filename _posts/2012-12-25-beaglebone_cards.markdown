@@ -45,16 +45,18 @@ cfdisk is pretty user-friendly. (Yay, for agreeing with the docs!)
 Delete the existing partitions and create two more for boot and rootfs. 
 Here's what mine looks like
 
->                            cfdisk (util-linux 2.20.1)
->
->                                 Disk Drive: /dev/sdc
->                            Size: 3904897024 bytes, 3904 MB
->                 Heads: 121   Sectors per Track: 62   Cylinders: 1016
->
->    Name         Flags       Part Type   FS Type           [Label]         Size (MB)
-> -------------------------------------------------------------------------------------
->    sdc1         Boot         Primary    W95 FAT32                            126.76   
->    sdc2                      Primary    ext3              [Angstrom]        3778.15  *
+     
+                                cfdisk (util-linux 2.20.1)
+     
+                                     Disk Drive: /dev/sdc
+                                Size: 3904897024 bytes, 3904 MB
+                     Heads: 121   Sectors per Track: 62   Cylinders: 1016
+     
+        Name         Flags       Part Type   FS Type           [Label]         Size (MB)
+     -------------------------------------------------------------------------------------
+        sdc1         Boot         Primary    W95 FAT32                            126.76   
+        sdc2                      Primary    ext3              [Angstrom]        3778.15  *
+     
 
 Some tips:
 1) hit enter over the "bootable" option to make the first partition bootable.
@@ -100,23 +102,23 @@ Now mount the new filesystems
 Using OE I built Angstrom distribution's  systemd-image. 
 This generates the following file manifest:
 
-> Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone.rootfs.tar.bz2
-> config-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone.config
-> config-beaglebone.config
-> mkcard.sh
-> MLO
-> MLO-beaglebone
-> MLO-beaglebone-2011.09+git
-> modules-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone.tgz
-> modules-beaglebone.tgz
-> README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
-> systemd-image-beaglebone.tar.bz2
-> u-boot-beaglebone-2011.09+git-r30.img
-> u-boot-beaglebone.img
-> u-boot.img
-> uImage
-> uImage-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone-20121224175644.bin
-> uImage-beaglebone.bin
+    Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone.rootfs.tar.bz2
+    config-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone.config
+    config-beaglebone.config
+    mkcard.sh
+    MLO
+    MLO-beaglebone
+    MLO-beaglebone-2011.09+git
+    modules-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone.tgz
+    modules-beaglebone.tgz
+    README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
+    systemd-image-beaglebone.tar.bz2
+    u-boot-beaglebone-2011.09+git-r30.img
+    u-boot-beaglebone.img
+    u-boot.img
+    uImage
+    uImage-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone-20121224175644.bin
+    uImage-beaglebone.bin
 
 Some of these are symlinks. 
 Basically we are interested in the longer filenames. 
@@ -124,21 +126,25 @@ Using `ls -l` will show you which ones are symlinks.
 You should use the real files and not the links for the following steps. 
 
 1. Copy files to /mnt/boot
-    sudo cp MLO-beaglebone-2011.09+git /mnt/boot/MLO
-    sudo cp u-boot-beaglebone-2011.09+git-r30.img /mnt/boot/u-boot.img
-    sudo cp uImage-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone-20121224175644.bin /mnt/boot/uImage
+
+        sudo cp MLO-beaglebone-2011.09+git /mnt/boot/MLO
+        sudo cp u-boot-beaglebone-2011.09+git-r30.img /mnt/boot/u-boot.img
+        sudo cp uImage-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone-20121224175644.bin /mnt/boot/uImage
 
 2. Untar filesystem to /mnt/rootfs
-    sudo tar -xjf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone.rootfs.tar.bz2 -C /mnt/rootfs/
+
+        sudo tar -xjf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone.rootfs.tar.bz2 -C /mnt/rootfs/
 
 It's a good idea to sync again,
-    sudo sync
+
+        sudo sync
 
 Unmount everything, and give the beaglebone a boot.
 
 ## Boot Beaglebone
 
 Eject the SD card
+
     sudo umount /dev/sdc1
     sudo umount /dev/sdc2
     sudo eject /dev/sdc
