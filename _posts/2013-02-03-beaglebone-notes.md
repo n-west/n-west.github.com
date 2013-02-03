@@ -20,6 +20,7 @@ So I fired up OE and built using Angstrom's recent release v2012.12.
 
 Well, the modem was detected but could not connect to networks. 
 The symptoms were
+
     AT
     OK
     AT+CFUN?
