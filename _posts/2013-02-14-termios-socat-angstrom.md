@@ -120,6 +120,7 @@ Looking for the other two missing constants, I used
     $ grep -e 'TABDLY_SHIFT' -e 'CSIZE_SHIFT' -d recurse -f *
 which generates a lot of output that I won't copy here. 
 The revelant pieces that I found useful: 
+
     Config/config.Linux-2-6-24.h:#define TABDLY_SHIFT 11
     Config/config.Linux-2-6-24.h:#define CSIZE_SHIFT 4
     Config/config.SunOS-5-10.h:#define TABDLY_SHIFT 11
