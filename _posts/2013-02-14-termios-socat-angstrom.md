@@ -10,7 +10,9 @@ custom firmware I've created.
 This relies on socat to connect a serial port to a TCP socket. 
 Socat worked beautifully in all of my tests, then I tried to actually do a demo
 and socat failed, giving
+
     2000/01/01 10:58:00 socat[446] E parseopts(): unknown option "b9600"
+
 So the option to set the baud rate of my serial port is unknown. Le sigh...
 
 # Investigations #
@@ -114,6 +116,7 @@ Apparently this is dependent on the OS you're running.
 I plan to use linux, so I'll use 9.
 
 Looking for the other two missing constants, I used
+
     $ grep -e 'TABDLY_SHIFT' -e 'CSIZE_SHIFT' -d recurse -f *
 which generates a lot of output that I won't copy here. 
 The revelant pieces that I found useful: 
