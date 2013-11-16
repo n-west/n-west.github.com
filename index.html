@@ -3,12 +3,12 @@ layout: default
 title: Home
 ---
 
-<!-- Show last 5 posts here -->
+<!-- Show last 15 posts here -->
 {% for post in site.posts limit: 15  %}
 	
 	<div class="post">
 
-		<h2>{{ post.title }}</h2>
+		<a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
 		<span class="date">{{ post.date | date_to_string }}</span>
 	
 		<div class="entry">{{ post.content | strip_html | truncatewords: 80 }}</div>

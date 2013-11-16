@@ -1,6 +1,8 @@
 ---
 title: Design Notes on InsulWare
-layout: default
+layout: post
+category: insulware
+tags: insulware openembedded
 ---
 
 # High Level Overview #

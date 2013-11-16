@@ -1,16 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 
----
-layout: default
----
+<html>
+	<head>
+		<title>{% if page.title %} {{ page.title }} | {% endif %} nwest</title>
+		<link rel="stylesheet" href="/style.css" />
+		<link rel="stylesheet" href="/pygments.css" />
+        <script type="text/javascript">
 
-<div class="post">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-45765260-1']);
+          _gaq.push(['_trackPageview']);
 
-	<h2>{{ page.title }}</h2>
-	<span class="date">{{ page.date | date_to_string }}</span>
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
 
-	<div class="entry">{{ content }}</div>
+        </script>
 
-	<span class="meta"></span>
+	</head>
 
-</div>
+	<body>
+		<div id="header">
+			<span id="title">Nathan West</span>
+            <span id="navigation">
+            <a href="http://nathanwest.us">blog</a> |
+            <a href="http://nathanwest.us/about.html">about</a> |
+            <a href="http://nathanwest.us/projects.html">projects</a> |
+            <a href="https://github.com/n-west/">github</a>
+            </span>
+		</div>
 
+		<div id="sidebar">
+			{% for category in site.categories %}
+			<h3>{{ category[0] }}</h3>
+				<ul>
+					{% for post in category[1] limit:5 | capitalize %}
+					<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+					{% endfor %}
+				</ul>
+			{% endfor %}
+
+		</div>
+
+		<div id="content">
+
+			{{ content }}
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>&copy; 2012,2013 Nathan West</p>
+            <p>Pages last generated on {{ site.time }}</p>
+		</div>
+
+	</body>
+
+</html>

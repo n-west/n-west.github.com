@@ -1,3 +1,10 @@
+---
+layout: post
+title: Notes on Setting up Insulware
+category: insulware
+tag: insulware,openembedded,beaglebone
+---
+
 Notes on setting up Insulware
 =============================
 

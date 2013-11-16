@@ -1,38 +1,92 @@
+ 
+/* Solarized colors for reference
+$base03: #002b36;
+$base02: #073642;
+$base01: #586e75;
+$base00: #657b83;
+$base0: #839496;
+$base1: #93a1a1;
+$base2: #eee8d5;
+$base3: #fdf6e3;
+$yellow: #b58900;
+$orange: #cb4b16;
+$red: #dc322f;
+$magenta: #d33682;
+$violet: #6c71c4;
+$blue: #268bd2;
+$cyan: #2aa198;
+$green: #859900;
+*/
 body {
+  background-color: #fdf6e3; /* solarized light bg */
   font-size: 12px;
   font-family: Verdana, Arial, SunSans-Regular, Sans-Serif;
-  color:#564b47;  
-  
+  color: #657b83; /* solarized base00 */
 }
 
+em,b { color: #586e75; /* solarized base01 */ }
+ 
+a { color: #268bd2; /* solarized blue */ }
+ 
+a:active, a:visited { color: #6c71c4; /* solarized violet */ }
+ 
+a:hover { color: #2aa198;; /* solarized cyan */ }
+ 
+h1 { color: #b58900; /* solarized yellow */ }
+ 
+h2,h3,h4,h5,h6 { color: #cb4b16; /* solarized orange */ }
+ 
 #content {
-
-	width: 65%;
-	min-width: 600px;
-	margin-left: 200px;
+  width: 50%;
+  min-width: 600px;
+  margin-left: 200px;
+  padding-left: 50px;
 }
-
+ 
 #sidebar {
-	float: left;
-	width: 200px;
-	min-width: 200px;
+  float: left;
+  width: 200px;
+  min-width: 200px;
+  margin-left: 10px;
 }
 
+#header {
+  width: 50%;
+  min-width: 900px;
+  margin-left: 10px;
+}
 
+#title {
+  color: #b58900;
+  font-size: 24px;
+}
+
+#navigation {
+  font-size: 18px;
+  float: right;
+}
+ 
+.highlight {
+padding-top: 1px; /* Somthing is weird here, 1px gives a whole lotta space */
+padding-bottom: 1px;
+padding-left: 15px;
+border-radius: 5px;
+}
+ 
 #footer {
-	clear: both;
-	width: 100%;
+clear: both;
+width: 100%;
 }
-
+ 
 .post {
-	margin: 10px;
+margin: 10px;
 }
-
+ 
 .entry {
-	margin-left: 10px;
-	padding: 10px;
+margin-left: 10px;
+padding: 10px;
 }
-
+ 
 .meta {
-	padding-top: 10px;
+padding-top: 10px;
 }

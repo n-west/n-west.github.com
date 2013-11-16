@@ -1,6 +1,8 @@
 ---
-layout: default
+layout: post
 title: RF Front Ends on Beaglebone
+category: sdr
+tags: sdr masters hardware
 ---
 
 I've been frantically trying to get my MS thesis experiment running so I can (finally) finish this degree. 

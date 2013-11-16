@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Obligatory intro post
-
 ---
 
 I've had this page layout for some time, and I just bought a domain. 

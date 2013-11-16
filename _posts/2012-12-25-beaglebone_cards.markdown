@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Creating a Bootable SD card from an Angstrom/OE build
 
 ---
@@ -28,18 +28,24 @@ In my case the card is on /dev/sdc and has two partitions, sdc1 and sdc2.
 ## Step two: format the card
 The card should be unmounted using something like
 
-    sudo umount /dev/sdc1
-    sudo umount /dev/sdc2
+```bash
+sudo umount /dev/sdc1
+sudo umount /dev/sdc2
+```
 
 Clear the MBR (Master Boot Record).
 Be very careful with this step, this has potential to wipe out your hard drive's MBR as well, which would be very difficult to fix. 
 
-    sudo dd if=/dev/zero of=/dev/sdc bs=1024 count=1024
+```bash
+sudo dd if=/dev/zero of=/dev/sdc bs=1024 count=1024
+```
 
 Now use a disk partition tool to create a "boot" and "rootfs" partition. 
 As stated earlier, I use cfdisk
 
-    sudo cfdisk /dev/sdc
+```bash
+sudo cfdisk /dev/sdc
+```
 
 cfdisk is pretty user-friendly. (Yay, for agreeing with the docs!)
 Delete the existing partitions and create two more for boot and rootfs. 
@@ -68,14 +74,18 @@ Now our disk is partitioned and we need to make a filesystems.
 
 ## Create filesystems
 
-    sudo mkfs.vfat -F 32 -n "boot" /dev/sdc1
-    sudo mkfs.ext3 -L "rootfs" /dev/sdc2
+```bash
+sudo mkfs.vfat -F 32 -n "boot" /dev/sdc1
+sudo mkfs.ext3 -L "rootfs" /dev/sdc2
+```
 
 The second one will take some time if your disk is big. 
 It's always a good idea to use the `sync` command
 As the manpage says, sync forces changed blocks to disk and updates the super block. 
 
+```bash
     sudo sync
+```
 
 Now we should be able to mount both of the filesystems.
 
@@ -90,12 +100,17 @@ The `mount` command alone will list the mountpoints.
 
 My preferred method is to create two directories in `/mnt/`.
 
-    sudo mkdir /mnt/rootfs
-    sudo mkdir /mnt/boot
+```bash
+sudo mkdir /mnt/rootfs
+sudo mkdir /mnt/boot
+```
 
 Now mount the new filesystems
+
+```bash
     sudo mount /dev/sdc1 /mnt/boot
     sudo mount /dev/sdc2 /mnt/rootfs
+```
 
 ## Write files to disk
 
@@ -127,17 +142,23 @@ You should use the real files and not the links for the following steps.
 
 1. Copy files to /mnt/boot
 
+```bash
         sudo cp MLO-beaglebone-2011.09+git /mnt/boot/MLO
         sudo cp u-boot-beaglebone-2011.09+git-r30.img /mnt/boot/u-boot.img
         sudo cp uImage-3.2.28-r16b+gitr720e07b4c1f687b61b147b31c698cb6816d72f01-beaglebone-20121224175644.bin /mnt/boot/uImage
+```
 
 2. Untar filesystem to /mnt/rootfs
 
+```bash
         sudo tar -xjf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone.rootfs.tar.bz2 -C /mnt/rootfs/
+```
 
 It's a good idea to sync again,
 
+```bash
         sudo sync
+```
 
 Unmount everything, and give the beaglebone a boot.
 
@@ -145,9 +166,11 @@ Unmount everything, and give the beaglebone a boot.
 
 Eject the SD card
 
+```bash
     sudo umount /dev/sdc1
     sudo umount /dev/sdc2
     sudo eject /dev/sdc
+```
 
 Put the card into the beaglebone, and boot.
 Hopefully it will boot up and you can see it through the serial port. :-)

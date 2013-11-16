@@ -1,9 +1,12 @@
 ---
-layout: default
-title: Notes on Angstrom+BeagleBone+Option Icon Modem
+layout: post
+title: Notes on Angstrom + BeagleBone + Option Icon Modem
+category: Insulware
+tags: insulware openembedded beaglebone
 ---
 
 # Introduction #
+
 I'm using a BeagleBone. 
 I use OpenEmbedded/bitbake to build Angstrom images. 
 I use [setup-scripts](http://gitorious.org/angstrom/angstrom-setup-scripts)  to set up my OE environment \(I'm lazy\)
@@ -12,6 +15,7 @@ I build an image I called [insulaudit-image](https://github.com/n-west/meta-insu
 I am trying to use an Option GlobeTrotter Icon322 3G modem from the beaglebone.
 
 # A brief timelime #
+
 Around Dec 25, 2012 I was using a beaglebone running an image that I can't recall. I think it was a cloud9-image or something. 
 The image was able to identify the modem and connect to the network. 
 
@@ -40,6 +44,7 @@ It might be whatever network manager/modem manager Angstrom uses.
 But *something* changed in those 7 months and broke modems that use the hso kernel module.
 
 # A couple of links#
+
 There's a few handy links that are worth sharing.
 [Option summarized sending an SMS using AT commands on their website](https://gist.github.com/4645594). I don't know why they took it down.
 [This guy has some interesting notes doing similar things](http://beaglebonegsmmonitor.blogspot.com/2012_04_01_archive.html)
